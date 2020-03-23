@@ -19,7 +19,11 @@ function validateProjectById(req, res, next) {
   const { id } = req.params;
   Projects.get(id)
     .then(resp => {
-      console.log('id when validating', id);
+      if (resp !== null) {
+        next();
+      } else {
+        res.status(404).json({ errorMessage: "The project with that id does not exist." })
+      }
     })
     .catch(err => {
       res.status(500).json({ errorMessage: "There was an error getting the specified project." })
