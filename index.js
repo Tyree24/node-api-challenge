@@ -12,3 +12,14 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require('express');
+
+const ProjectsRouter = require("./routes/ProjectsRouter.js");
+
+const server = express();
+
+server.use(express.json());
+server.use("/api/projects/", ProjectsRouter);
+
+server.listen(5000, () => console.log('\n Port is open on 5000 \n')) 
